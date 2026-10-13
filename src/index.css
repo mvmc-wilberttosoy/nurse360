@@ -1,111 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+
+/* Theme Variables for Nursing LMS (Medical Teal & Slate) */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --lms-primary: #00897b;
+  --lms-primary-hover: #00796b;
+  --lms-primary-glow: rgba(0, 137, 123, 0.15);
+  --lms-text-main: #1e293b;
+  --lms-text-muted: #64748b;
+  --lms-border: #cbd5e1;
+  --lms-bg: #f0fdf4;
+}
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Split Layout Wrapper */
+.lms-login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
+    background-color: #ffffff;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* Left Form Panel */
+.lms-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+/* Auth Card */
+.lms-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  @media (max-width: 480px) {
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
   }
 }
 
-body {
-  margin: 0;
+/* Logo & Portal Tag */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  .brand-logo {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .portal-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.6rem;
+    background: var(--lms-bg);
+    color: var(--lms-primary);
+    border-radius: 6px;
+  }
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+.lms-header {
+  margin-bottom: 2rem;
+
+  &-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--lms-text-main);
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+  }
+
+  &-subtitle {
+    font-size: 0.9rem;
+    color: var(--lms-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+/* Form Styling */
+.auth-form {
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--lms-text-main);
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.925rem;
+  color: var(--lms-text-main);
+  background-color: #ffffff;
+  border: 1.5px solid var(--lms-border);
+  border-radius: 10px;
   box-sizing: border-box;
-}
+  transition: all 0.2s ease;
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+  &::placeholder {
+    color: #94a3b8;
+  }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  &:focus {
+    outline: none;
+    border-color: var(--lms-primary);
+    box-shadow: 0 0 0 4px var(--lms-primary-glow);
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+.password-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-password {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--lms-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
-p {
-  margin: 0;
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  & .form-input {
+    padding-right: 3rem;
+  }
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.eye-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--lms-text-muted);
+  cursor: pointer;
+  padding: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: var(--lms-text-main);
+  }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--lms-primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--lms-primary-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.lms-help-footer {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.813rem;
+  color: var(--lms-text-muted);
+
+  & a {
+    color: var(--lms-primary);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.terms-of-use {
+  font-size: 0.725rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+
+  & a {
+    color: var(--lms-text-muted);
+    text-decoration: underline;
+  }
+}
+
+/* Right Side Banner Panel (Nursing Features) */
+.lms-banner-panel {
+  flex: 1.3;
+  background: linear-gradient(135deg, rgba(0, 77, 64, 0.92) 0%, rgba(30, 41, 59, 0.95) 100%),
+    url('../assets/new-building.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.banner-overlay {
+  color: #ffffff;
+  z-index: 2;
+  max-width: 560px;
+
+  .banner-pill {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    color: #81e6d9;
+  }
+
+  & h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  & p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 2.5rem 0;
+    line-height: 1.6;
+  }
+}
+
+/* Feature Grid Cards */
+.lms-features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .feature-icon {
+      padding: 0.5rem;
+      background: rgba(0, 137, 123, 0.3);
+      color: #5eead4;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 0.2rem 0;
+      color: #ffffff;
+    }
+
+    & p {
+      font-size: 0.813rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+  }
 }

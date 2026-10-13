@@ -1,0 +1,271 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap'); */
+
+:root {
+    --lms-primary: #00897b;
+    --lms-primary-hover: #00796b;
+    --lms-primary-soft: rgba(0, 137, 123, 0.08);
+    --lms-text-dark: #0f172a;
+    --lms-text-muted: #64748b;
+    --lms-bg: #f8fafc;
+    --lms-border: #e2e8f0;
+}
+
+/* Shell & Outer Layout */
+.lms-legal-shell {
+    min-height: 100vh;
+    background-color: var(--lms-bg);
+    /* font-family: 'Inter', system-ui, sans-serif; */
+    color: var(--lms-text-dark);
+}
+
+/* Top Sticky Navigation */
+.lms-legal-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #ffffff;
+    border-bottom: 1px solid var(--lms-border);
+    padding: 0.85rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .navbar-logo {
+        height: 38px;
+        width: auto;
+    }
+
+    .brand-divider {
+        width: 1px;
+        height: 24px;
+        background-color: var(--lms-border);
+    }
+
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+
+        .app-title {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--lms-text-dark);
+        }
+
+        .app-tag {
+            font-size: 0.725rem;
+            color: var(--lms-text-muted);
+        }
+    }
+}
+
+.btn-return {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    background: var(--lms-primary-soft);
+    color: var(--lms-primary);
+    border: 1px solid rgba(0, 137, 123, 0.2);
+    border-radius: 8px;
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: var(--lms-primary);
+        color: #ffffff;
+    }
+}
+
+/* Main Body Single Column Layout */
+.lms-legal-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.lms-hero-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.15);
+
+    .hero-status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.25rem 0.65rem;
+        background: rgba(0, 137, 123, 0.25);
+        border: 1px solid rgba(0, 137, 123, 0.4);
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #5eead4;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    & h1 {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: 1.85rem;
+        font-weight: 800;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.3;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #94a3b8;
+        margin: 0;
+
+        & strong {
+            color: #f8fafc;
+        }
+    }
+}
+
+/* Document Blocks */
+.doc-block {
+    background: #ffffff;
+    border: 1px solid var(--lms-border);
+    border-radius: 16px;
+    padding: 2rem;
+
+    .doc-block-header {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        margin-bottom: 0.85rem;
+
+        .doc-icon {
+            color: var(--lms-primary);
+            flex-shrink: 0;
+        }
+
+        & h2 {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--lms-text-dark);
+        }
+    }
+
+    & p {
+        font-size: 0.925rem;
+        line-height: 1.65;
+        color: var(--lms-text-muted);
+        margin: 0;
+    }
+}
+
+/* Feature List Inside Blocks */
+.lms-feature-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #f8fafc;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--lms-text-muted);
+
+    .check-icon {
+        color: var(--lms-primary);
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+    }
+
+    & strong {
+        color: var(--lms-text-dark);
+    }
+}
+
+/* Contact Bar Horizontal Strip */
+.contact-block {
+    background: #ffffff;
+
+    & h2 {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .section-title-icon {
+            color: var(--lms-primary);
+        }
+    }
+}
+
+.lms-contact-bar {
+    margin-top: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: var(--lms-primary-soft);
+    border: 1px solid rgba(0, 137, 123, 0.15);
+    padding: 1.25rem;
+    border-radius: 12px;
+}
+
+.contact-col {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+
+    .col-icon {
+        color: var(--lms-primary);
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .col-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--lms-primary);
+    }
+
+    .col-val {
+        display: block;
+        font-size: 0.825rem;
+        font-weight: 600;
+        color: var(--lms-text-dark);
+
+        &.link {
+            color: var(--lms-primary);
+            text-decoration: none;
+            word-break: break-all;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
