@@ -1,0 +1,199 @@
+/* ==========================================
+   1. Dashboard Layout & Container
+   ========================================== */
+.dashboard-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.primary-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.calendar-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================
+   2. FullCalendar Theme Overrides
+   ========================================== */
+.fc {
+    --fc-border-color: #f1f5f9;
+    --fc-today-bg-color: #f8fafc;
+    --fc-button-bg-color: #ffffff;
+    --fc-button-border-color: #cbd5e1;
+    --fc-button-text-color: #334155;
+    --fc-button-active-bg-color: #e2e8f0;
+    --fc-button-active-border-color: #94a3b8;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.fc .fc-button {
+    font-size: 0.875rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: none !important;
+}
+
+.fc-daygrid-day-number {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    padding: 8px !important;
+}
+
+.fc-col-header-cell-cushion {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    padding-bottom: 8px !important;
+}
+
+/* ==========================================
+   3. Fixed-Height Cells & No-Scroll Layout
+   ========================================== */
+.fc-daygrid-day {
+    height: 120px !important;
+}
+
+.fc-daygrid-day-frame {
+    height: 120px !important;
+    max-height: 120px !important;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.fc-daygrid-day-events {
+    overflow: hidden !important;
+    max-height: 75px !important;
+}
+
+/* Style the "+ X more" popover link */
+.fc-daygrid-more-link {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #475569 !important;
+    background-color: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 2px;
+    text-decoration: none;
+}
+
+.fc-daygrid-more-link:hover {
+    background-color: #e2e8f0;
+    color: #1e293b !important;
+}
+
+/* ==========================================
+   4. Custom Google Calendar-Style Badges
+   ========================================== */
+.fc-daygrid-event {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 1px 2px !important;
+}
+
+.calendar-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.badge-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Color Variants */
+.badge-blue {
+    background-color: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.badge-blue .badge-dot {
+    background-color: #2563eb;
+}
+
+.badge-purple {
+    background-color: #f5f3ff;
+    color: #5b21b6;
+    border-color: #ddd6fe;
+}
+
+.badge-purple .badge-dot {
+    background-color: #7c3aed;
+}
+
+.badge-green {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+.badge-green .badge-dot {
+    background-color: #059669;
+}
+
+.badge-orange {
+    background-color: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+
+.badge-orange .badge-dot {
+    background-color: #ea580c;
+}

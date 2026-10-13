@@ -6,7 +6,6 @@ import TermsOfUse from "./pages/legals/TermsOfUse";
 import PrivacyPolicy from "./pages/legals/PrivacyPolicy";
 import Dashboard from "./pages/dashboard/Dashboard";
 
-
 const App = () => {
   return (
     <React.Fragment>

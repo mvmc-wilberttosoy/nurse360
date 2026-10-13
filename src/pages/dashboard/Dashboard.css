@@ -11,15 +11,19 @@
     --dash-border: #e2e8f0;
 }
 
+/* ==========================================================================
+   1. GLOBAL & WRAPPER STYLES
+   ========================================================================== */
 .dashboard-wrapper {
     min-height: 100vh;
     background-color: var(--dash-bg);
-    /* font-family: 'Inter', system-ui, sans-serif; */
     color: var(--dash-text-main);
     box-sizing: border-box;
 }
 
-/* Navbar Header */
+/* ==========================================================================
+   2. NAVBAR HEADER
+   ========================================================================== */
 .dashboard-navbar {
     position: sticky;
     top: 0;
@@ -53,7 +57,6 @@
         flex-direction: column;
 
         .nav-title {
-            /* font-family: 'Plus Jakarta Sans', system-ui, sans-serif; */
             font-weight: 800;
             font-size: 0.9rem;
             color: var(--dash-text-main);
@@ -65,7 +68,7 @@
 
             @media (max-width: 480px) {
                 display: none;
-                /* Hide secondary subtitle on tiny screens */
+                /* Hide subtitle on tiny mobile screens */
             }
         }
     }
@@ -147,7 +150,9 @@
     }
 }
 
-/* Profile Dropdown */
+/* ==========================================================================
+   3. PROFILE DROPDOWN MENU
+   ========================================================================== */
 .profile-dropdown-container {
     position: relative;
 }
@@ -208,7 +213,7 @@
     }
 }
 
-/* Hide text info on mobile view for compact header */
+/* Visibility Helper Classes */
 @media (max-width: 768px) {
     .desktop-only {
         display: none !important;
@@ -221,7 +226,6 @@
     }
 }
 
-/* Dropdown Menu */
 .profile-dropdown-menu {
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -291,7 +295,96 @@
     }
 }
 
-/* Dashboard Content Layout */
+/* ==========================================================================
+   4. MOBILE-RESPONSIVE SUB-NAVIGATION TAB BAR
+   ========================================================================== */
+.sub-nav-tabs {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--dash-border);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 57px;
+    /* Sticky below header */
+    z-index: 30;
+
+    @media (max-width: 768px) {
+        padding: 0 1rem;
+        top: 53px;
+        /* Slightly tighter offset on mobile */
+    }
+}
+
+.sub-nav-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    width: 100%;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Momentum scrolling on iOS */
+
+    /* Hide scrollbars visually across browsers */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Edge */
+    }
+
+    @media (max-width: 768px) {
+        gap: 1rem;
+    }
+}
+
+.sub-nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    padding: 0.85rem 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dash-text-muted);
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    flex-shrink: 0;
+    /* Prevents text/icon squishing on mobile */
+    transition: color 0.2s ease;
+
+    @media (max-width: 768px) {
+        font-size: 0.825rem;
+        padding: 0.75rem 0.15rem;
+    }
+}
+
+.sub-nav-tab:hover {
+    color: var(--dash-text-main);
+}
+
+.sub-nav-tab.active {
+    color: var(--dash-primary);
+    font-weight: 600;
+}
+
+/* Bottom active border indicator */
+.sub-nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--dash-primary);
+}
+
+/* ==========================================================================
+   5. MAIN DASHBOARD CONTENT & CARDS
+   ========================================================================== */
 .dashboard-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -308,7 +401,7 @@
     gap: 1.5rem;
 }
 
-/* Hero Banners */
+/* Welcome Banners */
 .welcome-banner {
     background: linear-gradient(135deg, #00897b 0%, #004d40 100%);
     color: #ffffff;
@@ -328,7 +421,6 @@
     }
 
     & h2 {
-        /* font-family: 'Plus Jakarta Sans', system-ui, sans-serif; */
         font-size: 1.35rem;
         font-weight: 800;
         margin: 0 0 0.25rem 0;
@@ -457,7 +549,6 @@
     }
 
     & h3 {
-        /* font-family: 'Plus Jakarta Sans', system-ui, sans-serif; */
         font-size: 1.1rem;
         font-weight: 600;
         margin: 0;
@@ -470,7 +561,7 @@
     }
 }
 
-/* 2 Column Panels Layout */
+/* 2-Column Dashboard Grid */
 .dashboard-grid-2col {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -494,7 +585,6 @@
         margin-bottom: 1rem;
 
         & h3 {
-            /* font-family: 'Plus Jakarta Sans', system-ui, sans-serif; */
             font-size: 0.95rem;
             font-weight: 600;
             margin: 0;
@@ -600,7 +690,9 @@
     }
 }
 
-/* Tables & Lists */
+/* ==========================================================================
+   6. TABLES & LISTS
+   ========================================================================== */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
