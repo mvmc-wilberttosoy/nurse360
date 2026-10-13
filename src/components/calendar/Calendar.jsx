@@ -55,12 +55,12 @@ export default function CalendarApp() {
     ]);
 
     // Automatically sync the input field when navigating via calendar prev/next buttons
-    // const handleDatesSet = (dateInfo) => {
-    //     const currentDate = dateInfo.view.calendar.getDate();
-    //     const year = currentDate.getFullYear();
-    //     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    //     setCurrentYearMonth(`${year}-${month}`);
-    // };
+    const handleDatesSet = (dateInfo) => {
+        const currentDate = dateInfo.view.calendar.getDate();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        setCurrentYearMonth(`${year}-${month}`);
+    };
 
     // Handle Month/Year input change to jump calendar date
     const handleMonthYearInputChange = (e) => {
@@ -173,8 +173,8 @@ export default function CalendarApp() {
                 dayMaxEventRows={2}
                 events={events}
 
-            // Callbacks & Handlers
-            // datesSet={handleDatesSet}
+                // Callbacks & Handlers
+                datesSet={handleDatesSet}
             // select={handleSelect}
             // eventClick={handleEventClick}
             // eventDrop={handleEventDrop}
