@@ -12,15 +12,13 @@ import {
 } from 'lucide-react';
 import Logo from '../../assets/corporate-logo.png';
 import './Dashboard.css';
+import CalendarApp from '../../components/calendar/Calendar';
 
 const Dashboard = () => {
     const navigate = useNavigate();
 
-    // Role Switcher State: 'student' | 'teacher' | 'admin'
-    const [role, setRole] = useState('student');
-
-    // Horizontal Sub-Nav Tab State (e.g., 'overview', 'courses', 'schedule')
-    const [activeTab, setActiveTab] = useState('overview');
+    // Horizontal Tab
+    const [activeTab, setActiveTab] = useState('overview'); // Defaulting to schedule for your grid preview
 
     // Profile Dropdown Toggle State
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +33,7 @@ const Dashboard = () => {
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [],);
+    }, []);
 
     // Logout Handler
     const handleLogout = () => {
@@ -44,6 +42,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-wrapper">
+
             {/* Top Navigation Header */}
             <header className="dashboard-navbar">
                 <div className="nav-brand">
@@ -66,20 +65,10 @@ const Dashboard = () => {
                             onClick={() => setIsMenuOpen((prev) => !prev)}
                             aria-expanded={isMenuOpen}
                         >
-                            <div className="avatar">
-                                {role === 'student' ? 'RN' : role === 'teacher' ? 'CI' : 'AD'}
-                            </div>
+                            <div className="avatar">RN</div>
                             <div className="user-info desktop-only">
-                                <span className="user-name">
-                                    {role === 'student' && 'Maria Santos, RN'}
-                                    {role === 'teacher' && 'Gabriel Torres, MAN'}
-                                    {role === 'admin' && 'ICT Admin Desk'}
-                                </span>
-                                <span className="user-role">
-                                    {role === 'student' && 'ER Department'}
-                                    {role === 'teacher' && 'Clinical Instructor'}
-                                    {role === 'admin' && 'System Administrator'}
-                                </span>
+                                <span className="user-name">Maria Santos</span>
+                                <span className="user-role">ER Department</span>
                             </div>
                             <ChevronDown size={16} className={`chevron-icon ${isMenuOpen ? 'open' : ''}`} />
                         </button>
@@ -89,11 +78,7 @@ const Dashboard = () => {
                             <div className="profile-dropdown-menu">
                                 <div className="dropdown-header">
                                     <p className="signed-in-as">Signed in as</p>
-                                    <p className="signed-in-email">
-                                        {role === 'student' && 'm.santos@mvmc.com.ph'}
-                                        {role === 'teacher' && 'g.torres@mvmc.com.ph'}
-                                        {role === 'admin' && 'ictadmin@mvmc.com.ph'}
-                                    </p>
+                                    <p className="signed-in-email">msantos@mvmc.com.ph</p>
                                 </div>
                                 <hr className="dropdown-divider" />
                                 <button className="dropdown-item" onClick={() => setIsMenuOpen(false)}>
@@ -139,11 +124,29 @@ const Dashboard = () => {
             {/* Main Content Area */}
             <main className="dashboard-content">
                 {activeTab === 'overview' && (
-                    <>
-                        {role === 'student' && <StudentDashboard />}
-                        {role === 'teacher' && <TeacherDashboard />}
-                        {role === 'admin' && <AdminDashboard />}
-                    </>
+                    <div className="dashboard-grid">
+
+                        {/* GRID AREA 1: CALENDAR (Top Left) */}
+                        <div className="grid-card calendar">
+                            <CalendarApp />
+                        </div>
+
+                        {/* GRID AREA 2: COMPLETION RATE (Top Right) */}
+                        <div className="grid-card chart">
+
+                        </div>
+
+                        {/* GRID AREA 3: UPCOMING TRAININGS TABLE (Bottom Left) */}
+                        <div className="grid-card training">
+
+                        </div>
+
+                        {/* GRID AREA 4: TRAINING COST SUMMARY (Bottom Right) */}
+                        <div className="grid-card cost">
+
+                        </div>
+                    </div>
+
                 )}
                 {activeTab === 'modules' && (
                     <div className="view-container">
@@ -153,31 +156,13 @@ const Dashboard = () => {
                 )}
                 {activeTab === 'schedule' && (
                     <div className="view-container">
-                        <h2>Clinical Schedules & Calendar</h2>
-                        <p>Manage your upcoming hospital rotations and simulation lab slots.</p>
+                        <h2>Dashboard</h2>
+                        <p>Dashboard for active coursework and module library.</p>
                     </div>
                 )}
             </main>
         </div>
     );
 };
-
-/* ==========================================================================
-   1. STUDENT DASHBOARD VIEW (Truncated for brevity)
-   ========================================================================== */
-const StudentDashboard = () => (
-    <div className="view-container">
-        <div className="welcome-banner">
-            <div>
-                <h2>Welcome back, Nurse Maria!</h2>
-                <p>You have 2 mandatory clinical compliance modules due this week.</p>
-            </div>
-        </div>
-        {/* Rest of student dashboard code... */}
-    </div>
-);
-
-const TeacherDashboard = () => (<div className="view-container"><h2>Instructor Command Center</h2></div>);
-const AdminDashboard = () => (<div className="view-container"><h2>System Governance</h2></div>);
 
 export default Dashboard;

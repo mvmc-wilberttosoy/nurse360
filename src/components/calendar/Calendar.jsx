@@ -20,11 +20,10 @@ export default function CalendarApp() {
     const getTodayYearMonth = () => {
         const now = new Date();
         const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JS!
+        const month = String(now.getMonth() + 1).padStart(2, '0');
         return `${year}-${month}`;
     };
 
-    // State stores a single YYYY-MM string (e.g., "2026-10")
     const [currentYearMonth, setCurrentYearMonth] = useState(getTodayYearMonth());
 
     // React state managing your calendar events
@@ -46,107 +45,107 @@ export default function CalendarApp() {
             title: 'Team Workshop',
             date: '2026-10-18',
             allDay: true
-        }
+        },
+        {
+            id: 4,
+            title: 'New Employee Orientation',
+            start: '2026-10-15T10:00:00',
+            end: '2026-10-15T11:00:00',
+        },
     ]);
 
-    // Automatically sync the input field when the user navigates using prev/next buttons
-    const handleDatesSet = (dateInfo) => {
-        const currentDate = dateInfo.view.calendar.getDate();
-        const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        setCurrentYearMonth(`${year}-${month}`);
-    };
+    // Automatically sync the input field when navigating via calendar prev/next buttons
+    // const handleDatesSet = (dateInfo) => {
+    //     const currentDate = dateInfo.view.calendar.getDate();
+    //     const year = currentDate.getFullYear();
+    //     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    //     setCurrentYearMonth(`${year}-${month}`);
+    // };
 
-    // Handle Month/Year input change
+    // Handle Month/Year input change to jump calendar date
     const handleMonthYearInputChange = (e) => {
-        const val = e.target.value; // Returns format like "2026-10"
+        const val = e.target.value;
         if (val) {
             setCurrentYearMonth(val);
             if (calendarRef.current) {
                 const calendarApi = calendarRef.current.getApi();
-                // Jump to the 1st day of the selected year and month
                 calendarApi.gotoDate(`${val}-01`);
             }
         }
     };
 
-    // Custom "Add Event" button action
-    const handleAddEventClick = () => {
-        const title = prompt('Enter new event title:');
-        if (title) {
-            const newEvent = {
-                id: Date.now(),
-                title,
-                start: `${currentYearMonth}-16T10:00:00`,
-                end: `${currentYearMonth}-16T11:00:00`,
-            };
-            setEvents(prev => [...prev, newEvent]);
-        }
-    };
-
     // Handle clicking an existing event (to delete)
-    const handleEventClick = (arg) => {
-        if (window.confirm(`Do you want to delete "${arg.event.title}"?`)) {
-            setEvents(prev => prev.filter(ev => String(ev.id) !== String(arg.event.id)));
-        }
-    };
+    // const handleEventClick = (arg) => {
+    //     if (window.confirm(`Do you want to delete "${arg.event.title}"?`)) {
+    //         setEvents(prev => prev.filter(ev => String(ev.id) !== String(arg.event.id)));
+    //     }
+    // };
 
     // Handle selecting/dragging a date or time block to create an event
-    const handleSelect = (arg) => {
-        const title = prompt(`Create event from ${arg.startStr} to ${arg.endStr}? Enter title:`);
-        if (title) {
-            const newEvent = {
-                id: Date.now(),
-                title,
-                start: arg.startStr,
-                end: arg.endStr,
-                allDay: arg.allDay
-            };
-            setEvents(prev => [...prev, newEvent]);
-        }
-        arg.view.calendar.unselect();
-    };
+    // const handleSelect = (arg) => {
+    //     const title = prompt(`Create event from ${arg.startStr} to ${arg.endStr}? Enter title:`);
+    //     if (title) {
+    //         const newEvent = {
+    //             id: Date.now(),
+    //             title,
+    //             start: arg.startStr,
+    //             end: arg.endStr,
+    //             allDay: arg.allDay
+    //         };
+    //         setEvents(prev => [...prev, newEvent]);
+    //     }
+    //     arg.view.calendar.unselect();
+    // };
 
     // Handle dragging and dropping an event to a new time slot
-    const handleEventDrop = (arg) => {
-        setEvents(prev => prev.map(ev => {
-            if (String(ev.id) === String(arg.event.id)) {
-                return {
-                    ...ev,
-                    start: arg.event.startStr,
-                    end: arg.event.endStr,
-                    allDay: arg.event.allDay
-                };
-            }
-            return ev;
-        }));
-    };
+    // const handleEventDrop = (arg) => {
+    //     setEvents(prev => prev.map(ev => {
+    //         if (String(ev.id) === String(arg.event.id)) {
+    //             return {
+    //                 ...ev,
+    //                 start: arg.event.startStr,
+    //                 end: arg.event.endStr,
+    //                 allDay: arg.event.allDay
+    //             };
+    //         }
+    //         return ev;
+    //     }));
+    // };
 
     // Handle resizing an event's duration
-    const handleEventResize = (arg) => {
-        setEvents(prev => prev.map(ev => {
-            if (String(ev.id) === String(arg.event.id)) {
-                return {
-                    ...ev,
-                    start: arg.event.startStr,
-                    end: arg.event.endStr
-                };
-            }
-            return ev;
-        }));
-    };
+    // const handleEventResize = (arg) => {
+    //     setEvents(prev => prev.map(ev => {
+    //         if (String(ev.id) === String(arg.event.id)) {
+    //             return {
+    //                 ...ev,
+    //                 start: arg.event.startStr,
+    //                 end: arg.event.endStr
+    //             };
+    //         }
+    //         return ev;
+    //     }));
+    // };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
 
-            {/* Custom Month/Year Input Filter Bar */}
-            <div style={{ marginBottom: '20px', display: 'flex', gap: '15px', alignItems: 'center', background: '#f8f9fa', padding: '12px 20px', borderRadius: '8px' }}>
-                <label style={{ fontWeight: 'bold', fontSize: '14px' }}>Month & Year:</label>
+            {/* Custom Month/Year Filter Bar replacing the Add Button */}
+            <div style={{
+                marginBottom: '12px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                background: '#f8f9fa',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0'
+            }}>
+                <span style={{ fontWeight: '600', fontSize: '13px', color: '#475569' }}>Jump to Month:</span>
                 <input
                     type="month"
                     value={currentYearMonth}
                     onChange={handleMonthYearInputChange}
-                    style={{ padding: '6px 12px', borderRadius: '4px', border: '1px solid #ccc', fontSize: '14px' }}
+                    style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #cbd5e1', fontSize: '13px' }}
                 />
             </div>
 
@@ -163,30 +162,23 @@ export default function CalendarApp() {
                 timeZone="Asia/Manila"
                 initialView="dayGridMonth"
 
-                buttons={{
-                    add: {
-                        text: 'Add Event',
-                        click: handleAddEventClick
-                    }
-                }}
-
                 headerToolbar={{
-                    left: 'add prev,next,today',
+                    left: 'prev,next,today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    right: 'dayGridMonth,timeGridWeek,listWeek'
                 }}
 
                 editable={true}
                 selectable={true}
-                dayMaxEventRows={6}
+                dayMaxEventRows={2}
                 events={events}
 
-                // Callbacks & Handlers
-                datesSet={handleDatesSet}
-                select={handleSelect}
-                eventClick={handleEventClick}
-                eventDrop={handleEventDrop}
-                eventResize={handleEventResize}
+            // Callbacks & Handlers
+            // datesSet={handleDatesSet}
+            // select={handleSelect}
+            // eventClick={handleEventClick}
+            // eventDrop={handleEventDrop}
+            // eventResize={handleEventResize}
             />
         </div>
     );

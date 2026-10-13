@@ -74,60 +74,6 @@
     }
 }
 
-/* Demo Role Switcher Tabs */
-.role-switcher-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    background: var(--dash-bg);
-    padding: 0.25rem 0.35rem;
-    border: 1px solid var(--dash-border);
-    border-radius: 12px;
-
-    .switcher-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--dash-text-muted);
-        margin-left: 0.25rem;
-
-        @media (max-width: 640px) {
-            display: none;
-        }
-    }
-
-    .role-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.35rem 0.625rem;
-        border: none;
-        background: transparent;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--dash-text-muted);
-        cursor: pointer;
-        transition: all 0.2s ease;
-
-        & span {
-            @media (max-width: 640px) {
-                display: none;
-                /* Show icon only on small screens */
-            }
-        }
-
-        &:hover {
-            color: var(--dash-text-main);
-        }
-
-        &.active {
-            background: #ffffff;
-            color: var(--dash-primary);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-    }
-}
-
 .nav-actions {
     display: flex;
     align-items: center;
@@ -305,7 +251,7 @@
     display: flex;
     align-items: center;
     position: sticky;
-    top: 57px;
+    top: var(--navbar-height);
     /* Sticky below header */
     z-index: 30;
 
@@ -386,7 +332,7 @@
    5. MAIN DASHBOARD CONTENT & CARDS
    ========================================================================== */
 .dashboard-content {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 1.5rem;
 
@@ -779,4 +725,428 @@
         color: var(--dash-text-muted);
         margin: 0;
     }
+}
+
+/* ==========================================================================
+   TRAININGS GRID LAYOUT (BENTO STYLE)
+   ========================================================================== */
+.trainings-dashboard-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1.25rem;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.trainings-top-controls {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -0.5rem;
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--dash-primary);
+
+        .select-pill {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dash-text-main);
+            cursor: pointer;
+        }
+    }
+}
+
+.card-box {
+    background: #ffffff;
+    border: 1px solid var(--dash-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+
+    & h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--dash-text-main);
+        margin: 0 0 1rem 0;
+        letter-spacing: 0.02em;
+    }
+}
+
+/* 1. Calendar Box */
+.calendar-box {
+    grid-column: 1 / 2;
+}
+
+.mock-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 64px);
+    gap: 1px;
+    background: var(--dash-border);
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    overflow: hidden;
+
+    .cal-cell {
+        background: #ffffff;
+        padding: 0.35rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .cal-date {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dash-text-muted);
+        }
+
+        &.has-event {
+            background: #f8fafc;
+        }
+    }
+}
+
+.cal-events-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cal-bar {
+    height: 5px;
+    border-radius: 3px;
+    width: 100%;
+
+    &.teal {
+        background: #2dd4bf;
+    }
+
+    &.blue {
+        background: #38bdf8;
+    }
+
+    &.dark-blue {
+        background: #1e40af;
+    }
+
+    &.single {
+        height: 5px;
+        background: #2dd4bf;
+        margin-top: auto;
+    }
+}
+
+/* 2. Completion Rate Box */
+.completion-box {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+
+    .completion-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+}
+
+.donut-chart-mock {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(#2dd4bf 0deg 216deg, #f1f5f9 216deg 360deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .donut-inner {
+        width: 90px;
+        height: 90px;
+        background: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 800;
+
+        .top {
+            color: var(--dash-text-muted);
+        }
+
+        .bottom {
+            color: var(--dash-primary);
+        }
+    }
+}
+
+.completion-legend {
+    display: flex;
+    gap: 2rem;
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+
+            &.teal {
+                background: #2dd4bf;
+            }
+
+            &.gray {
+                background: #cbd5e1;
+            }
+        }
+
+        & strong {
+            font-size: 0.95rem;
+            color: var(--dash-text-main);
+        }
+
+        & p {
+            margin: 0;
+            color: var(--dash-text-muted);
+            font-size: 0.7rem;
+        }
+    }
+}
+
+/* 3. Trainings Table Box */
+.trainings-table-box {
+    grid-column: 1 / 2;
+
+    .table-container {
+        overflow-x: auto;
+    }
+}
+
+.trainings-custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    white-space: nowrap;
+
+    & th {
+        text-align: left;
+        padding: 0.65rem 0.5rem;
+        color: var(--dash-primary);
+        border-bottom: 1px solid var(--dash-border);
+        font-size: 0.725rem;
+        text-transform: uppercase;
+    }
+
+    & td {
+        padding: 0.75rem 0.5rem;
+        border-bottom: 1px solid #f1f5f9;
+        color: var(--dash-text-main);
+    }
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    &.ongoing {
+        background: #ccfbf1;
+        color: #0f766e;
+    }
+
+    &.soon {
+        background: #f1f5f9;
+        color: #475569;
+    }
+}
+
+/* 4. Cost Summary Box */
+.cost-summary-box {
+    grid-column: 2 / 3;
+}
+
+.cost-total-banner {
+    background: #ccfbf1;
+    border: 1px solid #99f6e4;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .cost-title {
+        font-size: 0.775rem;
+        font-weight: 800;
+        color: #0f766e;
+        letter-spacing: 0.03em;
+    }
+
+    .cost-amount {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #0f766e;
+    }
+}
+
+.cost-breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+
+    .cost-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.775rem;
+        color: var(--dash-text-muted);
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #f1f5f9;
+
+        & strong {
+            color: var(--dash-text-main);
+            font-weight: 700;
+        }
+    }
+}
+
+
+:root {
+    --navbar-height: 58px;
+}
+
+.dashboard-navbar {
+    position: sticky;
+    top: 0;
+    height: var(--navbar-height);
+    z-index: 40;
+}
+
+
+.dashboard-content {
+    /* max-width: 1200px; */
+    /* margin: 0 auto; */
+    padding: 1.5rem;
+    width: 100%;
+    /* height: 85vh; */
+    overflow-x: hidden;
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "calendar calendar calendar calendar chart chart"
+        "calendar calendar calendar calendar chart chart"
+        "calendar calendar calendar calendar chart chart"
+        "calendar calendar calendar calendar cost cost"
+        "training training training training cost cost"
+        "training training training training cost cost"
+    ;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-card {
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.calendar {
+    grid-area: calendar
+}
+
+.chart {
+    grid-area: chart;
+}
+
+.training {
+    grid-area: training;
+}
+
+.cost {
+    grid-area: cost;
+}
+
+/* Allow the dashboard grid rows to adapt to content height instead of strict fractions */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    width: 100%;
+    /* Remove fixed height so rows expand naturally based on content */
+    height: auto;
+}
+
+/* Ensure individual grid cards handle internal overflow properly */
+.grid-card {
+    background: #ffffff;
+    border: 1px solid var(--dash-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    /* Clips any overflowing child elements */
+}
+
+/* Assign grid area spans using 12-column breakdown */
+.calendar {
+    grid-column: span 7;
+    /* Takes up 7 out of 12 columns */
+}
+
+.chart {
+    grid-column: span 5;
+    /* Takes up 5 out of 12 columns */
+}
+
+.training {
+    grid-column: span 7;
+}
+
+.cost {
+    grid-column: span 5;
+}
+
+/* Make sure FullCalendar fits inside its parent container without overflowing */
+.grid-card.calendar .fc {
+    max-width: 100%;
+    font-size: 0.85rem;
+    /* Slightly scales down text to fit neatly */
+}
+
+/* Adjust cell heights inside the calendar card so they don't force a blowout */
+.grid-card.calendar .fc-daygrid-day {
+    height: 85px !important;
+    /* Reduced from 120px to fit the dashboard card */
+}
+
+.grid-card.calendar .fc-daygrid-day-frame {
+    height: 85px !important;
+    max-height: 85px !important;
 }
