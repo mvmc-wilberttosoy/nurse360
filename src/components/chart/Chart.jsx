@@ -9,7 +9,7 @@ export default function CompletionChart() {
     return (
         <div style={{ width: '100%', height: '100%', minHeight: '280px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', margin: 0 }}>Training Status</h3>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#0f172a', margin: 0 }}>Training Status</h3>
                 <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '500' }}>Overall Rate</span>
             </div>
 

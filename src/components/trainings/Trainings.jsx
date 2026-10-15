@@ -38,15 +38,15 @@ export default function TrainingsTable() {
                         <div style={{ background: 'rgba(0, 137, 123, 0.1)', color: '#00897b', padding: '6px', borderRadius: '8px', display: 'flex' }}>
                             <BookOpen size={16} />
                         </div>
-                        <h3 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', margin: 0 }}>Upcoming Trainings</h3>
+                        <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#0f172a', margin: 0 }}>Upcoming Trainings</h3>
                     </div>
-                    <span style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: '500' }}>
+                    <span style={{ fontSize: '11px', color: '#64748b', fontWeight: '500' }}>
                         {startIndex + 1}-{Math.min(startIndex + itemsPerPage, allTrainings.length)} of {allTrainings.length}
                     </span>
                 </div>
 
                 {/* Modern Card List Container */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', minHeight: '210px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', minHeight: '210px' }}>
                     {currentTrainings.map((item) => {
                         const isOngoing = item.status === 'Ongoing';
                         return (
@@ -65,14 +65,14 @@ export default function TrainingsTable() {
                             >
                                 {/* Top Row: Title & Status Badge */}
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
-                                    <span style={{ fontSize: '0.825rem', fontWeight: '700', color: '#0f172a', lineHeight: '1.25' }}>
+                                    <span style={{ fontSize: '14px', fontWeight: '600', color: '#0f172a', lineHeight: '1.25' }}>
                                         {item.title}
                                     </span>
                                     <span style={{
                                         padding: '2px 8px',
                                         borderRadius: '12px',
-                                        fontSize: '0.65rem',
-                                        fontWeight: '700',
+                                        fontSize: '10px',
+                                        fontWeight: '600',
                                         backgroundColor: isOngoing ? '#ccfbf1' : '#e2e8f0',
                                         color: isOngoing ? '#0f766e' : '#475569',
                                         whiteSpace: 'nowrap',
@@ -83,7 +83,7 @@ export default function TrainingsTable() {
                                 </div>
 
                                 {/* Bottom Row: Venue, Date, Time Metadata */}
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.72rem', color: '#64748b', marginTop: '2px' }}>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '10px', color: '#64748b', marginTop: '2px' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                                         <MapPin size={12} color="#00897b" />
                                         <span style={{ fontWeight: '600', color: '#334155' }}>{item.venue}</span>

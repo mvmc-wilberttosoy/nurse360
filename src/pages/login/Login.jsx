@@ -98,7 +98,7 @@ const NurseGlassSplitLogin = () => {
                         <div className="stat-card">
                             <BookOpenCheck className="stat-icon" size={20} />
                             <div>
-                                <h4>24 Modules</h4>
+                                <h4>Modern Modules</h4>
                                 <p>Active CE Courses</p>
                             </div>
                         </div>

@@ -38,7 +38,7 @@ export default function TrainingCostSummary() {
                         <div style={{ background: 'rgba(0, 137, 123, 0.1)', color: '#00897b', padding: '6px', borderRadius: '8px', display: 'flex' }}>
                             <Receipt size={16} />
                         </div>
-                        <h3 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', margin: 0 }}>Training Cost Summary</h3>
+                        <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#0f172a', margin: 0 }}>Training Cost Summary</h3>
                     </div>
                     <span style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: '500' }}>
                         {startIndex + 1}-{Math.min(startIndex + itemsPerPage, allCostData.length)} of {allCostData.length}
@@ -87,7 +87,7 @@ export default function TrainingCostSummary() {
                         >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
                                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00897b', flexShrink: 0 }}></span>
-                                <span style={{ fontSize: '0.78rem', fontWeight: '600', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '160px' }}>
+                                <span style={{ fontSize: '0.78rem', fontWeight: '400', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '160px' }}>
                                     {item.category}
                                 </span>
                             </div>
@@ -97,12 +97,12 @@ export default function TrainingCostSummary() {
                                     color: '#475569',
                                     padding: '2px 6px',
                                     borderRadius: '10px',
-                                    fontSize: '0.65rem',
-                                    fontWeight: '700'
+                                    fontSize: '10px',
+                                    fontWeight: '500'
                                 }}>
                                     {item.percentage}
                                 </span>
-                                <strong style={{ color: '#0f172a', fontSize: '0.8rem', fontWeight: '700' }}>{item.amount}</strong>
+                                <strong style={{ color: '#0f172a', fontSize: '0.8rem', fontWeight: '600' }}>{item.amount}</strong>
                             </div>
                         </div>
                     ))}

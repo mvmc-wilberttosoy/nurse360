@@ -168,7 +168,7 @@ export default function CalendarApp() {
                     right: 'dayGridMonth,timeGridWeek,listWeek'
                 }}
 
-                editable={true}
+                // editable={true}
                 selectable={true}
                 dayMaxEventRows={2}
                 events={events}

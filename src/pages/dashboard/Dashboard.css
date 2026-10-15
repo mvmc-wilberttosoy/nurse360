@@ -57,7 +57,7 @@
         flex-direction: column;
 
         .nav-title {
-            font-weight: 800;
+            font-weight: 600;
             font-size: 0.9rem;
             color: var(--dash-text-main);
         }
@@ -140,7 +140,7 @@
 
     .user-name {
         font-size: 0.8rem;
-        font-weight: 700;
+        font-weight: 500;
         color: var(--dash-text-main);
     }
 
@@ -292,13 +292,14 @@
     background: transparent;
     border: none;
     padding: 0.85rem 0.25rem;
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 500;
     color: var(--dash-text-muted);
     cursor: pointer;
     position: relative;
     white-space: nowrap;
     flex-shrink: 0;
+    text-decoration: none;
     /* Prevents text/icon squishing on mobile */
     transition: color 0.2s ease;
 
